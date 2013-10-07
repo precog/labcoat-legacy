@@ -1,0 +1,471 @@
+[{
+"type":"operator",
+"header":"new arg",
+"body":"<p>Produces a copy of the given set with a fresh set of identities (for use in self-joins)</p>"
+},{
+"type":"operator",
+"header":"arg1 + arg2",
+"body":"<p>Numeric addition</p>"
+},{
+"type":"operator",
+"header":"arg1 - arg2",
+"body":"<p>Numeric subtraction</p>"
+},{
+"type":"operator",
+"header":"arg1 * arg2",
+"body":"<p>Numeric multiplication</p>"
+},{
+"type":"operator",
+"header":"arg1 / arg2",
+"body":"<p>Numeric division</p>"
+},{
+"type":"operator",
+"header":"arg1 ^ arg2",
+"body":"<p>Numeric exponentiation</p>"
+},{
+"type":"operator",
+"header":"arg1 < arg2",
+"body":"<p>Numeric less-than comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 <= arg2",
+"body":"<p>Numeric less-than-equal comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 > arg2",
+"body":"<p>Numeric greater-than comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 >= arg2",
+"body":"<p>Numeric greater-than-equal comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 = arg2",
+"body":"<p>Equality comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 != arg2",
+"body":"<p>Negated equality comparison</p>"
+},{
+"type":"operator",
+"header":"arg1 & arg2",
+"body":"<p>Boolean conjunction</p>"
+},{
+"type":"operator",
+"header":"arg1 | arg2",
+"body":"<p>Boolean disjunction</p>"
+},{
+"type":"operator",
+"header":"! arg",
+"body":"<p>Boolean complementation</p>"
+},{
+"type":"operator",
+"header":"neg arg",
+"body":"<p>Numeric negation</p>"
+},{
+"type":"operator",
+"header":"arg1 ~ arg2 arg3",
+"body":"<p>Set relation (for use in cross-set joins)</p>"
+},{
+"type":"operator",
+"header":"arg1 union arg2",
+"body":"<p>Set union</p>"
+},{
+"type":"operator",
+"header":"arg1 intersect arg2",
+"body":"<p>Set intersection</p>"
+},{
+"type":"operator",
+"header":"arg1 difference arg2",
+"body":"<p>Set difference. Returns the events contained in arg1 which are not contained in arg2.</p>"
+},{
+"header":"count (s : Any): Int",
+"body":"<p>Takes a single set and returns its size.</p>"
+},{
+"header":"distinct (s : Any): Any",
+"body":"<p>Takes a single set and returns a set of the distinct (unique) values.</p>"
+},{
+"header":" flatten(arr: Array) : set",
+"body":"<p>Takes a set of arrays and flattens them into a set where each value of the original array becomes an independent record in the resulting set.</p>"
+},{
+"header":"geometricMean (n : Numeric): Numeric",
+"body":"<p>Takes a single set and returns its geometric mean.</p>"
+},{
+"header":"load (s : String): Any",
+"body":"<p>Takes a single string path and returns the set of events in the data store which correspond to the path in question.</p>"
+},{
+"header":"max (n : Numeric): Numeric",
+"body":"<p>Takes a single set of numeric events and returns the maximum value among all the events.</p>"
+},{
+"header":"maxTime(times: DateTime): DateTime",
+"body":"<p>Takes a set of DateTime values and returns the maximum.</p>"
+},{
+"header":"mean (n : Numeric): Numeric",
+"body":"<p>Takes a single set of numeric events and returns the arithmetic mean of all the values.</p>"
+},{
+"header":"min (n : Numeric): Numeric",
+"body":"<p>Takes a single set of numeric events and returns the minimum of all the values.</p>"
+},{
+"header":"minTime(times: DateTime): DateTime",
+"body":"<p>Takes a set of DateTime values and returns the minimum.</p>"
+},{
+"header":"stdDev (n : Numeric): Numeric",
+"body":"<p>Takes a single set of numeric events and returns the standard deviation from the arithmetic mean of all the values.</p>"
+},{
+"header":"sum (n : Numeric): Numeric",
+"body":"<p>Takes a single set of numeric events and returns the sum of all the values.</p>"
+},{
+"header":"sumSq (n : Numeric): Numeric",
+"body":"<p>Takes a single set and returns the sum of the square of each value.</p>"
+},{
+"header":"variance (n : Numeric): Numeric",
+"body":"<p>Takes a single set and returns its population variance.</p>"
+},{
+"header":"std::stats::corr (n1 : Numeric, n2 : Numeric): Numeric",
+"body":"<p>Takes two sets and returns the correlation coefficient of the matched pairs of numbers.</p>"
+},{
+"header":"std::stats::cov (n1 : Numeric, n2 : Numeric): Numeric",
+"body":"<p>Takes two sets and returns the population covariance of the matched pairs of numbers.</p>"
+},{
+"header":"std:stats::linearRegression(n1: Numeric, data: Any): Object",
+"body":"<p>Takes two sets: the first is the dependent variable and the second contains all the independent variables. Each schema in the data generates a field (\"Model1\", \"Model2\", etc.) in the result object. Each of these fields contains an array of size two. The first element of the array contains the coefficients of the model, inserted into the original schema. The second element of the array is the constant term. For example, if the original data contains two schema: {n\"foo\": Numeric, \"bar\": Numeric} and {\n\"foo\": Numeric}, the resulting object would have the form: {\n\"Model1\": [{\n\"foo\": Numeric, \"bar\", Numeric}, Numeric], \"Model2\": [{\n\"foo\": Numeric}, Numeric]}. </p>"
+},{
+"header":"std::stats::logisticRegression(n1: Numeric, data: Any): Object",
+"body":"<p>Takes two sets: the first is the dependent variable and the second contains all the independent variables. The dependent variable must have numeric value 0 or value 1. Each schema in the data generates a field (\"Model1\", \"Model2\", etc.) in the resulting object. Each of these fields contains an array of size two. The first element of the array contains the coefficients of the model, inserted into the original schema. The second element of the array contains the constant term. For example, if the original data contains two schema: {\n\"foo\": Numeric, \"bar\": Numeric} and {\n\"foo\": Numeric}, the resulting object would have the form: {\n\"Model1\": [{\n\"foo\": Numeric, \"bar\", Numeric}, Numeric], \"Model2\": [{\n\"foo\": Numeric}, Numeric]}. </p>"
+},{
+"header":"std::stats::predictLinear(models: Object, data: Any): Object",
+"body":"<p>Takes two sets. The first is a set of models that must be of the form: {\n\"Model1\": [Any, Numeric], \"Model2\": [Any, Numeric], . . .}. The second is a set of data from which the result will be predicted. Consider a row of data. A single numeric value will be returned for each model whose schema is contained in the row's schema. For example, if the schema for Model2 isn't included in the row's schema, while the schemas for Model1 and Model3 are, the result for a given row will be of the form: {\n\"Model1\": Numeric, \"Model3\": Numeric}. </p>"
+},{
+"header":"std::stats::predictLogistic(models: Object, data: Any): Object",
+"body":"<p>Identitical to predictLinear, except that the resulting numerics will be values between 0 and 1. </p>"
+},{
+"header":"std::stats::rank(s : Any): Numeric",
+"body":"<p>Takes a single set, and returns a set of numbers whose ordering corresponds to the lexical ordering of the original set, starting from 0. If the values of multiple events in the original set compare as equal (ignoring event identities) they will have the same rank value. There may be discontinuities in the sequence of numbers returned.</p>"
+},{
+"header":"std::stats::denseRank(s: Any): Numeric",
+"body":"<p>Takes a single set, and returns a set of numbers whose ordering corresponds to the lexical ordering of the original set, starting from 0. If the values of multiple events in the original set compare as equal (ignoring event identities) they will have the same rank value. There will be no discontinuities in the sequence of numbers returned.</p>"
+},{
+"header":"std::stats::indexedRank(s: Any): Numeric",
+"body":"<p>Takes a single set, and returns a set of numbers whose ordering corresponds to the lexical ordering of the original set, but where values that compare as equal (ignoring event identities) are each assigned distinct rank values. The order of rank values within a group of equal event values is arbitrary, but you are guaranteed that rank values respect the lexical ordering and that there will be no discontinuities in the sequence of numbers returned.</p>"
+},{
+"header":"std::math::abs (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each absolute value.</p>"
+},{
+"header":"std::math::acos (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each arccosine.</p>"
+},{
+"header":"std::math::asin (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each arcsine.</p>"
+},{
+"header":"std::math::atan (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each arctangent.</p>"
+},{
+"header":"std::math::atan2 (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the angle theta from the conversion of each pair of rectangular coordinates to polar coordinates.</p>"
+},{
+"header":"std::math::cbrt (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each cube root.</p>"
+},{
+"header":"std::math::ceil (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each ceiling.</p>"
+},{
+"header":"std::math::copySign (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns the first value with the sign of the second value.</p>"
+},{
+"header":"std::math::cos (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each cosine.</p>"
+},{
+"header":"std::math::cosh (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each hyperbolic cosine.</p>"
+},{
+"header":"std::math::exp (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of Euler's number (e) raised to each value.</p>"
+},{
+"header":"std::math::floor (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each floor.</p>"
+},{
+"header":"std::math::hypot (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the square root of the sum of the square of each pair.</p>"
+},{
+"header":"std::math::IEEEremainder (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the remainder operation computed on the two values, as prescribed by the IEEE 754 standard.</p>"
+},{
+"header":"std::math::log (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each natural log.</p>"
+},{
+"header":"std::math::log10 (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each log in base 10.</p>"
+},{
+"header":"std::math::minOf (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the minimum of each pair.</p>"
+},{
+"header":"std::math::maxOf (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the maximum of each pair.</p>"
+},{
+"header":"std::math::parseNum (s: String): Numeric",
+"body":"<p>Converts the given string to a numeric value if possible (otherwise the result is undefined).</p>"
+},{
+"header":"std::math::pow (n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and returns a set of the first value raised to the power of the second value.</p>"
+},{
+"header":"std::math::roundTo(n1: Numeric, n2: Numeric): Double",
+"body":"<p>Takes two sets of numeric events and rounds the first to the number of decimals specified in the second. A negative number in the 2nd field indicates decimals to the right. So, roundTo(1234, -2) would return 1200.</p>"
+},{
+"header":"std::math::round (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each value rounded.</p>"
+},{
+"header":"std::math::sin (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each sine.</p>"
+},{
+"header":"std::math::signum (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each signum. 1.0 if the argument is greater than zero. -1.0 if the argument is less than zero.</p>"
+},{
+"header":"std::math::sinh (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each hyperbolic sine.</p>"
+},{
+"header":"std::math::sqrt (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each square root.</p>"
+},{
+"header":"std::math::tan (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each tangent.</p>"
+},{
+"header":"std::math::tanh (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of each hyperbolic tangent.</p>"
+},{
+"header":"std::math::toDegrees (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events (in Radians) and returns a set of each value in degrees.</p>"
+},{
+"header":"std::math::toRadians (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events (in degrees) and returns a set of each value in Radians.</p>"
+},{
+"header":"std::math::ulp (n: Numeric): Double",
+"body":"<p>Takes a single set of numeric events and returns a set of the size of each unit in the last place.</p>"
+},{
+"header":"std::string::codePointAt (s: String, n: Numeric): Int",
+"body":"<p>Takes a single set of string events and a set of numeric events. Returns the character (Unicode code point) at the specified index.</p>"
+},{
+"header":"std::string::codePointBefore (s: String, n: Numeric): Int",
+"body":"<p>Takes a single set of string events and a set of numeric events. Returns the character (Unicode code point) before the specified index.</p>"
+},{
+"header":"std::string::concat (s1: String, s2: String): String",
+"body":"<p>Takes two sets of string events and returns the concatenation of the two strings.</p>"
+},{
+"header":"std::string::dropLeft:(s: String, n: Numeric): String",
+"body":"<p>Takes a set of string events and returns a new substring of the first string, removing the first n letters from s. If there are less than n letters in s, then the empty string is returned.</p>"
+},{
+"header":"std::string::dropRight(s: String, n: Numeric): String",
+"body":"<p>Takes a set of string events and returns a new substring of the first string, removing the last n letters from s. If there are less than n letters in s, then the empty string is returned.</p>"
+},{
+"header":"std::string::endsWith (s1: String, s2: String): Boolean",
+"body":"<p>Takes two sets of string events and returns a set of true or false. True if and only if the first string ends with the suffix specified by the second string.</p>"
+},{
+"header":"std::string::equals (s1: String, s2: String): Boolean",
+"body":"<p>Takes two sets of string events and returns a set of true or false. True if and only if the two strings are equivalent.</p>"
+},{
+"header":"std::string::equalsIgnoreCase (s1: String, s2: String): Boolean",
+"body":"<p>Takes two sets of string events and returns a set of true or false. True if and only if the two strings are equivalent, ignoring case considerations.</p>"
+},{
+"header":"std::string::indexOf (s1: String, s2: String): Int",
+"body":"<p>Takes two sets of string events and returns the index in the first string of the first occurrence of the substring specified by the second string.</p>"
+},{
+"header":"std::string::isEmpty (s: String): Boolean",
+"body":"<p>Takes a single set of string events and returns a set of true or false. True if and only if the length of the string is zero.</p>"
+},{
+"header":"std::string::lastIndexOf (s1: String, s2: String): Int",
+"body":"<p>Takes two sets of string events and returns the index in the first string of the last occurrence of the substring specified by the second string.</p>"
+},{
+"header":"std::string::length (s: String): Int",
+"body":"<p>Takes a single set of string events and returns a set of each string length.</p>"
+},{
+"header":"std::string::matches (s1: String, s2: String): Boolean",
+"body":"<p>Takes two sets of string events and returns true or false. True if and only if the first string matches the regular expression specified by the second string.</p>"
+},{
+"header":"std::string::numToString(ns: Numeric): String",
+"body":"<p>Converts a set of numeric values to a set of strings.</p>"
+},{
+"header":"std::string::regexMatch(s: String, regex: String): Array[String]",
+"body":"<p>Takes two sets of string events and treats the latter as a set of regular expressions, returning a set of arrays of the capture groups.  Empty captures are returned as the empty set.</p>"
+},{
+"header":"std::string::split(sset: String, separator: String): Array <br /> std::string::splitRegex(sset: String, regex: String): Array",
+"body":"<p>These two functions split individual strings into arrays. In the former, the separator is interpreted as a literal string; in the latter, a regular expression is used to find the points to split at.</p>"
+},{
+"header":"std::string::startsWith (s1: String, s2: String): Boolean",
+"body":"<p>Takes two sets of string events and returns true or false. True if and only if the first string starts with the prefix specified by the second string.</p>"
+},{
+"header":"std::string::substring (s: String, n: Numeric): String",
+"body":"<p>Takes two sets of string events and returns a new substring of the first string, beginning at the specified index.</p>"
+},{
+"header":"std::string::takeLeft(s: String, n: Numeric): String",
+"body":"<p>Takes a set of string events and returns a new substring of the first string that is the first n letters from s. If n is larger than the number of letters, than s is returned.</p>"
+},{
+"header":"std::string::takeRight(s: String, n: Numeric): String",
+"body":"<p>Takes a set of string events and returns a new substring of the last n letters of the string. If there are less than n letters in s, then s is returned.</p>"
+},{
+"header":"std::string::toLowerCase (s: String): String",
+"body":"<p>Takes a single set of string events and returns a set of each string with each character in lower case.</p>"
+},{
+"header":"std::string::toUpperCase (s: String): String",
+"body":"<p>Takes a single set of string events and returns a set of each string with each character in upper case.</p>"
+},{
+"header":"std::string::trim(ss: String): String",
+"body":"<p>Removes leading and trailing whitespace from the input strings.</p>"
+},{
+"header":"std::time::changeTimeZone (time : ISO8601, tz: String): ISO8601",
+"body":"<p>Takes a set of ISO8601 strings and a set of time zone strings (of the form \"+04:00\") and returns a set of ISO8601 strings.</p>"
+},{
+"header":"std::time::date (time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns the date in format \"yyyy-MM-dd\".</p>"
+},{
+"header":"std::time::dateHour(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the date and hour in format \"yyyy-MM-dd'T'HH\".</p>"
+},{
+"header":"std::time::dateHourMinute(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the date, hour, and minute in format \"yyyy-MM-dd'T'HH:mm\".</p>"
+},{
+"header":"std::time::dateHourMinuteSecond(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the date, hour, minute, and second in format \"yyyy-MM-dd'T'HH:mm:ss\".</p>"
+},{
+"header":"std::time::dateHourMinuteSecondMillis(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the date, hour, minute, second, and millisecond in format \"yyyy-MM-dd'T'HH:mm:ss.SSS\".</p>"
+},{
+"header":"std::time::daysBetween (time1 : ISO8601, time2 : ISO8601): Int",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the days between two times.</p>"
+},{
+"header":"std::time::dayOfMonth (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the day of the month.</p>"
+},{
+"header":"std::time::dayOfWeek (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the day of the week as an integer. Monday is day 1.</p>"
+},{
+"header":"std::time::dayOfYear (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the day of the year.</p>"
+},{
+"header":"std::time::daysPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of days.</p>"
+},{
+"header":"std::time::getMillis (time : ISO8601): Long",
+"body":"<p>Takes a set of ISO8601 strings and returns a set of millisecond longs</p>"
+},{
+"header":"std::time::hourMinute(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the hour and minute in format \"HH:mm\".</p>"
+},{
+"header":"std::time::hourMinuteSecond(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the hour, minute, and second in format \"HH:mm:ss\".</p>"
+},{
+"header":"std::time::hourOfDay (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the hour of the day.</p>"
+},{
+"header":"std::time::hoursBetween (time1 : ISO8601, time2 : ISO8601): Long",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the hours between two times.</p>"
+},{
+"header":"std::time::hoursPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of hours.</p>"
+},{
+"header":"std::time::millisOfSecond (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the mills of the second.</p>"
+},{
+"header":"std::time::maxTimeOf(d1: DateTime, d2: DateTime): DateTime",
+"body":"<p>Compares two DateTime values and returns the later.</p>"
+},{
+"header":"std::time::millisPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of millis.</p>"
+},{
+"header":"std::time::millisToISO (time : Long, tz : String): ISO8601",
+"body":"<p>Takes a set of long millis-since-epoch and a set of time zone strings (of the form \"+04:00\") and returns a set of ISO8601 strings. </p>"
+},{
+"header":"std::time::minTimeOf(d1: DateTime, d2: DateTime): DateTime",
+"body":"<p>Compares two DateTime values and returns the earlier.</p>"
+},{
+"header":"std::time::minuteOfHour (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the minute of the hour.</p>"
+},{
+"header":"std::time::minutesBetween (time1 : ISO8601, time2 : ISO8601): Long",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the minutes between two times.</p>"
+},{
+"header":"std::time::minutesPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of minutes.</p>"
+},{
+"header":"std::time::monthDay(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the month and day in format \"MM-dd\".</p>"
+},{
+"header":"std::time::monthOfYear (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the month of the year as an integer. January is month 1.</p>"
+},{
+"header":"std::time::monthsBetween (time1 : ISO8601, time2 : ISO8601): Int",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the months between two times.</p>"
+},{
+"header":"std::time::monthsPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of months.</p>"
+},{
+"header":"std::time::quarter (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the quarter of year as an integer. January/February/March is quarter 1.</p>"
+},{
+"header":"std::time::parseDateTime(s: String, s: String): ISO8601",
+"body":"<p>Takes a set of time strings and a set of time string formats. Returns a set of ISO8601 strings. If no time zone is specified, the default is UTC.</p>"
+},{
+"header":"std::time::parseDateTimeFuzzy(s: String): ISO8601",
+"body":"<p>Takes a set of time strings and makes a best effort to parse the string into a DateTime. If possible, returns a set of ISO8601 strings.</p>"
+},{
+"header":"std::time::season (time : ISO8601): String",
+"body":"<p>Takes a set of ISO8601 strings and returns a set of strings. According to the solstices and equinoxes, the seasons are \"fall\", \"winter\", \"spring\", \"summer\".</p>"
+},{
+"header":"std::time::secondOfMinute (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the second of the minute.</p>"
+},{
+"header":"std::time::seconds (time1 : ISO8601, time2 : ISO8601): Long",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the seconds between two times.</p>"
+},{
+"header":"std::time::secondsPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of seconds.</p>"
+},{
+"header":"std::time::timeWithZone(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the time and time zone in format \"HH:mm:ss.SSSZZ\".</p>"
+},{
+"header":"std::time::timeWithoutZone(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the time in format \"HH:mm:ss.SSS\".</p>"
+},{
+"header":"std::time::timeZone (time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the time zone as a string of the form \"+04:00\".</p>"
+},{
+"header":"std::time::weeksBetween (time1 : ISO8601, time2 : ISO8601): Int",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the weeks between two times.</p>"
+},{
+"header":"std::time::weekOfYear (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the week of the year.</p>"
+},{
+"header":"std::time::weeksPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of weeks.</p>"
+},{
+"header":"std::time::year (time : ISO8601): Int",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the year.</p>"
+},{
+"header":"std::time::yearsBetween (time1 : ISO8601, time2 : ISO8601): Int",
+"body":"<p>Takes two sets of ISO8601 strings and returns a set of the years between two times.</p>"
+},{
+"header":"std::time::yearDayOfYear(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the year and day of year in format \"yyyy-DDD\".</p>"
+},{
+"header":"std::time::yearMonth(time : ISO8601): String",
+"body":"<p>Takes a single set of ISO8601 strings and returns a set of the year and month in format \"yyyy-MM\".</p>"
+},{
+"header":"std::time::yearsPlus(time : ISO8601, i : Int): String",
+"body":"<p>Takes a single set of ISO8601 strings and an integer, and returns a set of ISO8601 Strings plus the specified number of years.</p>"
+},{
+"header":"std::type::isArray(s : Any): boolean",
+"body":"<p>Takes a single set and returns true for each event that is an Array and false for all other defined events. </p>"
+},{
+"header":"std::type::isBoolean(s : Any) : boolean",
+"body":"<p>Takes a single set and returns true for each event that is a Boolean and false for all other defined events. </p>"
+},{
+"header":"std::type::isNull(s : Any): boolean",
+"body":"<p>Takes a single set and returns true for each event that is a null and false for all other defined events. </p>"
+},{
+"header":"std::type::isNumber(s : Any): boolean",
+"body":"<p>Takes a single set and returns true for each event that is a Number and false for all other defined events. </p>"
+},{
+"header":"std::type::isObject(s : Any): boolean",
+"body":"<p>Takes a single set and returns true for each event that is an Object and false for all other defined events. </p>"
+},{
+"header":"std::type::isString(s : Any): boolean",
+"body":"<p>Takes a single set and returns true for each event that is an  String d false for all other defined events. </p>"
+}]
